@@ -18,13 +18,13 @@ export const Route = createFileRoute("/services")({
 });
 
 const services = [
-  { icon: FileCheck2, title: "eTIMS Onboarding & Filing", points: ["eTIMS registration & setup", "Invoice compliance training", "Monthly filing & reconciliation"] },
-  { icon: Receipt, title: "VAT Returns", points: ["Monthly VAT computation & filing", "Input VAT review", "KRA correspondence"] },
-  { icon: ShieldCheck, title: "Income Tax", points: ["Individual & corporate returns", "Installment tax planning", "Tax health checks"] },
-  { icon: ClipboardList, title: "Audit & Assurance", points: ["Statutory audit preparation", "Internal audit reviews", "Risk & controls assessment"] },
-  { icon: Boxes, title: "Fixed Asset Management", points: ["Asset tagging & barcoding", "Physical verification", "Updated fixed asset register"] },
-  { icon: Users, title: "Business Consultancy", points: ["Bookkeeping & advisory", "Process improvement", "Compliance training"] },
-];
+  { icon: FileCheck2, title: "eTIMS Onboarding & Filing", to: "/services/etims-filing", points: ["eTIMS registration & setup", "Invoice compliance training", "Monthly filing & reconciliation"] },
+  { icon: Receipt, title: "VAT Returns", to: "/services/vat", points: ["Monthly VAT computation & filing", "Input VAT review", "KRA correspondence"] },
+  { icon: ShieldCheck, title: "Income Tax", to: "/services/income-tax", points: ["Individual & corporate returns", "Installment tax planning", "Tax health checks"] },
+  { icon: ClipboardList, title: "Audit & Assurance", to: null, points: ["Statutory audit preparation", "Internal audit reviews", "Risk & controls assessment"] },
+  { icon: Boxes, title: "Fixed Asset Management", to: "/services/fixed-asset-management", points: ["Asset tagging & barcoding", "Physical verification", "Updated fixed asset register"] },
+  { icon: Users, title: "Business Consultancy", to: null, points: ["Bookkeeping & advisory", "Process improvement", "Compliance training"] },
+] as const;
 
 function Services() {
   return (
@@ -44,7 +44,7 @@ function Services() {
       </section>
 
       <section className="mx-auto grid max-w-6xl gap-6 px-6 py-20 md:grid-cols-2">
-        {services.map(({ icon: Icon, title, points }) => (
+        {services.map(({ icon: Icon, title, points, to }) => (
           <div
             key={title}
             className="rounded-xl border border-border bg-card p-8"
@@ -62,6 +62,14 @@ function Services() {
                 </li>
               ))}
             </ul>
+            {to && (
+              <Link
+                to={to}
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+              >
+                Learn more <ArrowRight className="h-4 w-4" />
+              </Link>
+            )}
           </div>
         ))}
       </section>
