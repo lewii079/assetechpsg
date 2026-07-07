@@ -14,6 +14,10 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesVatRouteImport } from './routes/services.vat'
+import { Route as ServicesIncomeTaxRouteImport } from './routes/services.income-tax'
+import { Route as ServicesFixedAssetManagementRouteImport } from './routes/services.fixed-asset-management'
+import { Route as ServicesEtimsFilingRouteImport } from './routes/services.etims-filing'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -40,42 +44,103 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesVatRoute = ServicesVatRouteImport.update({
+  id: '/vat',
+  path: '/vat',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesIncomeTaxRoute = ServicesIncomeTaxRouteImport.update({
+  id: '/income-tax',
+  path: '/income-tax',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesFixedAssetManagementRoute =
+  ServicesFixedAssetManagementRouteImport.update({
+    id: '/fixed-asset-management',
+    path: '/fixed-asset-management',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesEtimsFilingRoute = ServicesEtimsFilingRouteImport.update({
+  id: '/etims-filing',
+  path: '/etims-filing',
+  getParentRoute: () => ServicesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/services/etims-filing': typeof ServicesEtimsFilingRoute
+  '/services/fixed-asset-management': typeof ServicesFixedAssetManagementRoute
+  '/services/income-tax': typeof ServicesIncomeTaxRoute
+  '/services/vat': typeof ServicesVatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/services/etims-filing': typeof ServicesEtimsFilingRoute
+  '/services/fixed-asset-management': typeof ServicesFixedAssetManagementRoute
+  '/services/income-tax': typeof ServicesIncomeTaxRoute
+  '/services/vat': typeof ServicesVatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRoute
+  '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/services/etims-filing': typeof ServicesEtimsFilingRoute
+  '/services/fixed-asset-management': typeof ServicesFixedAssetManagementRoute
+  '/services/income-tax': typeof ServicesIncomeTaxRoute
+  '/services/vat': typeof ServicesVatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/services' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/services'
+    | '/sitemap.xml'
+    | '/services/etims-filing'
+    | '/services/fixed-asset-management'
+    | '/services/income-tax'
+    | '/services/vat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/services' | '/sitemap.xml'
-  id: '__root__' | '/' | '/about' | '/contact' | '/services' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/services'
+    | '/sitemap.xml'
+    | '/services/etims-filing'
+    | '/services/fixed-asset-management'
+    | '/services/income-tax'
+    | '/services/vat'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/services'
+    | '/sitemap.xml'
+    | '/services/etims-filing'
+    | '/services/fixed-asset-management'
+    | '/services/income-tax'
+    | '/services/vat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
-  ServicesRoute: typeof ServicesRoute
+  ServicesRoute: typeof ServicesRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
@@ -116,14 +181,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/vat': {
+      id: '/services/vat'
+      path: '/vat'
+      fullPath: '/services/vat'
+      preLoaderRoute: typeof ServicesVatRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/income-tax': {
+      id: '/services/income-tax'
+      path: '/income-tax'
+      fullPath: '/services/income-tax'
+      preLoaderRoute: typeof ServicesIncomeTaxRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/fixed-asset-management': {
+      id: '/services/fixed-asset-management'
+      path: '/fixed-asset-management'
+      fullPath: '/services/fixed-asset-management'
+      preLoaderRoute: typeof ServicesFixedAssetManagementRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/etims-filing': {
+      id: '/services/etims-filing'
+      path: '/etims-filing'
+      fullPath: '/services/etims-filing'
+      preLoaderRoute: typeof ServicesEtimsFilingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
+
+interface ServicesRouteChildren {
+  ServicesEtimsFilingRoute: typeof ServicesEtimsFilingRoute
+  ServicesFixedAssetManagementRoute: typeof ServicesFixedAssetManagementRoute
+  ServicesIncomeTaxRoute: typeof ServicesIncomeTaxRoute
+  ServicesVatRoute: typeof ServicesVatRoute
+}
+
+const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesEtimsFilingRoute: ServicesEtimsFilingRoute,
+  ServicesFixedAssetManagementRoute: ServicesFixedAssetManagementRoute,
+  ServicesIncomeTaxRoute: ServicesIncomeTaxRoute,
+  ServicesVatRoute: ServicesVatRoute,
+}
+
+const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
+  ServicesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
-  ServicesRoute: ServicesRoute,
+  ServicesRoute: ServicesRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
