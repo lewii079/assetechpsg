@@ -20,13 +20,13 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { icon: FileCheck2, title: "eTIMS Filing", desc: "Onboarding, invoicing and monthly eTIMS compliance handled end-to-end." },
-  { icon: Receipt, title: "VAT & Income Tax", desc: "Timely, accurate VAT and income tax preparation, filing and advisory." },
-  { icon: ShieldCheck, title: "Tax Compliance", desc: "Stay penalty-free with proactive KRA compliance and health checks." },
-  { icon: ClipboardList, title: "Audit Support", desc: "Independent audit preparation, reviews and assurance engagements." },
-  { icon: Boxes, title: "Fixed Asset Management", desc: "Tagging, verification and an always-updated fixed asset register." },
-  { icon: Users, title: "Business Consultancy", desc: "Practical advice to help you build a smarter, more resilient business." },
-];
+  { icon: FileCheck2, title: "eTIMS Filing", to: "/services/etims-filing", desc: "Onboarding, invoicing and monthly eTIMS compliance handled end-to-end." },
+  { icon: Receipt, title: "VAT Returns", to: "/services/vat", desc: "Monthly VAT computation, input VAT reviews and KRA correspondence." },
+  { icon: ShieldCheck, title: "Income Tax", to: "/services/income-tax", desc: "Individual and corporate returns, installment tax and planning." },
+  { icon: ClipboardList, title: "Audit Support", to: null, desc: "Independent audit preparation, reviews and assurance engagements." },
+  { icon: Boxes, title: "Fixed Asset Management", to: "/services/fixed-asset-management", desc: "Tagging, verification and an always-updated fixed asset register." },
+  { icon: Users, title: "Business Consultancy", to: null, desc: "Practical advice to help you build a smarter, more resilient business." },
+] as const;
 
 function Index() {
   return (
@@ -98,7 +98,7 @@ function Index() {
           </p>
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map(({ icon: Icon, title, desc }) => (
+          {services.map(({ icon: Icon, title, desc, to }) => (
             <div
               key={title}
               className="group rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/40"
@@ -109,6 +109,11 @@ function Index() {
               </div>
               <h3 className="mt-5 text-lg font-semibold text-foreground">{title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
+              {to && (
+                <Link to={to} className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
+                  Learn more <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              )}
             </div>
           ))}
         </div>
