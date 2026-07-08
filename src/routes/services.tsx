@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import {
-  FileCheck2, Receipt, ClipboardList, ShieldCheck, Boxes, Users, ArrowRight,
+  FileCheck2, Landmark, ClipboardList, Boxes, Users, ArrowRight,
 } from "lucide-react";
 
 export const Route = createFileRoute("/services")({
@@ -19,8 +19,7 @@ export const Route = createFileRoute("/services")({
 
 const services = [
   { icon: FileCheck2, title: "eTIMS Onboarding & Filing", to: "/services/etims-filing", points: ["eTIMS registration & setup", "Invoice compliance training", "Monthly filing & reconciliation"] },
-  { icon: Receipt, title: "VAT Returns", to: "/services/vat", points: ["Monthly VAT computation & filing", "Input VAT review", "KRA correspondence"] },
-  { icon: ShieldCheck, title: "Income Tax", to: "/services/income-tax", points: ["Individual & corporate returns", "Installment tax planning", "Tax health checks"] },
+  { icon: Landmark, title: "Tax", to: "/services/tax", points: ["VAT, Income Tax, TOT & PAYE", "Withholding & Rental Income Tax", "Planning, filing & KRA correspondence"] },
   { icon: ClipboardList, title: "Audit & Assurance", to: null, points: ["Statutory audit preparation", "Internal audit reviews", "Risk & controls assessment"] },
   { icon: Boxes, title: "Fixed Asset Management", to: "/services/fixed-asset-management", points: ["Asset tagging & barcoding", "Physical verification", "Updated fixed asset register"] },
   { icon: Users, title: "Business Consultancy", to: null, points: ["Bookkeeping & advisory", "Process improvement", "Compliance training"] },

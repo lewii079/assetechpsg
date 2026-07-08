@@ -4,9 +4,8 @@ import { SiteFooter } from "@/components/site-footer";
 import heroImg from "@/assets/hero.jpg";
 import {
   FileCheck2,
-  Receipt,
+  Landmark,
   ClipboardList,
-  ShieldCheck,
   Boxes,
   Users,
   ArrowRight,
@@ -21,8 +20,7 @@ export const Route = createFileRoute("/")({
 
 const services = [
   { icon: FileCheck2, title: "eTIMS Filing", to: "/services/etims-filing", desc: "Onboarding, invoicing and monthly eTIMS compliance handled end-to-end." },
-  { icon: Receipt, title: "VAT Returns", to: "/services/vat", desc: "Monthly VAT computation, input VAT reviews and KRA correspondence." },
-  { icon: ShieldCheck, title: "Income Tax", to: "/services/income-tax", desc: "Individual and corporate returns, installment tax and planning." },
+  { icon: Landmark, title: "Tax", to: "/services/tax", desc: "VAT, Income Tax, TOT, PAYE, Withholding Tax and more — all handled by our tax team." },
   { icon: ClipboardList, title: "Audit Support", to: null, desc: "Independent audit preparation, reviews and assurance engagements." },
   { icon: Boxes, title: "Fixed Asset Management", to: "/services/fixed-asset-management", desc: "Tagging, verification and an always-updated fixed asset register." },
   { icon: Users, title: "Business Consultancy", to: null, desc: "Practical advice to help you build a smarter, more resilient business." },
