@@ -16,7 +16,7 @@ import {
 
 export const Route = createFileRoute("/")({
   component: Index,
-}});
+});
 
 const services = [
   { icon: FileCheck2, title: "eTIMS Filing", to: "/services/etims-filing", desc: "Onboarding, invoicing and monthly eTIMS compliance handled end-to-end." },
