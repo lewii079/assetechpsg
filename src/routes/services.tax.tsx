@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import {
   Receipt, ShieldCheck, Coins, Users2, Percent, Home, Flame, Building2, ArrowRight,
+  type LucideIcon,
 } from "lucide-react";
 
 export const Route = createFileRoute("/services/tax")({
@@ -17,7 +18,9 @@ export const Route = createFileRoute("/services/tax")({
   component: TaxIndex,
 });
 
-const taxes = [
+type TaxItem = { icon: LucideIcon; title: string; desc: string; to?: "/services/vat" | "/services/income-tax" };
+
+const taxes: TaxItem[] = [
   {
     icon: Receipt,
     title: "Value Added Tax (VAT)",

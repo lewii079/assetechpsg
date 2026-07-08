@@ -15,6 +15,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesVatRouteImport } from './routes/services.vat'
+import { Route as ServicesTaxRouteImport } from './routes/services.tax'
 import { Route as ServicesIncomeTaxRouteImport } from './routes/services.income-tax'
 import { Route as ServicesFixedAssetManagementRouteImport } from './routes/services.fixed-asset-management'
 import { Route as ServicesEtimsFilingRouteImport } from './routes/services.etims-filing'
@@ -49,6 +50,11 @@ const ServicesVatRoute = ServicesVatRouteImport.update({
   path: '/vat',
   getParentRoute: () => ServicesRoute,
 } as any)
+const ServicesTaxRoute = ServicesTaxRouteImport.update({
+  id: '/tax',
+  path: '/tax',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesIncomeTaxRoute = ServicesIncomeTaxRouteImport.update({
   id: '/income-tax',
   path: '/income-tax',
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/services/etims-filing': typeof ServicesEtimsFilingRoute
   '/services/fixed-asset-management': typeof ServicesFixedAssetManagementRoute
   '/services/income-tax': typeof ServicesIncomeTaxRoute
+  '/services/tax': typeof ServicesTaxRoute
   '/services/vat': typeof ServicesVatRoute
 }
 export interface FileRoutesByTo {
@@ -86,6 +93,7 @@ export interface FileRoutesByTo {
   '/services/etims-filing': typeof ServicesEtimsFilingRoute
   '/services/fixed-asset-management': typeof ServicesFixedAssetManagementRoute
   '/services/income-tax': typeof ServicesIncomeTaxRoute
+  '/services/tax': typeof ServicesTaxRoute
   '/services/vat': typeof ServicesVatRoute
 }
 export interface FileRoutesById {
@@ -98,6 +106,7 @@ export interface FileRoutesById {
   '/services/etims-filing': typeof ServicesEtimsFilingRoute
   '/services/fixed-asset-management': typeof ServicesFixedAssetManagementRoute
   '/services/income-tax': typeof ServicesIncomeTaxRoute
+  '/services/tax': typeof ServicesTaxRoute
   '/services/vat': typeof ServicesVatRoute
 }
 export interface FileRouteTypes {
@@ -111,6 +120,7 @@ export interface FileRouteTypes {
     | '/services/etims-filing'
     | '/services/fixed-asset-management'
     | '/services/income-tax'
+    | '/services/tax'
     | '/services/vat'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/services/etims-filing'
     | '/services/fixed-asset-management'
     | '/services/income-tax'
+    | '/services/tax'
     | '/services/vat'
   id:
     | '__root__'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/services/etims-filing'
     | '/services/fixed-asset-management'
     | '/services/income-tax'
+    | '/services/tax'
     | '/services/vat'
   fileRoutesById: FileRoutesById
 }
@@ -188,6 +200,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesVatRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/tax': {
+      id: '/services/tax'
+      path: '/tax'
+      fullPath: '/services/tax'
+      preLoaderRoute: typeof ServicesTaxRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/income-tax': {
       id: '/services/income-tax'
       path: '/income-tax'
@@ -216,6 +235,7 @@ interface ServicesRouteChildren {
   ServicesEtimsFilingRoute: typeof ServicesEtimsFilingRoute
   ServicesFixedAssetManagementRoute: typeof ServicesFixedAssetManagementRoute
   ServicesIncomeTaxRoute: typeof ServicesIncomeTaxRoute
+  ServicesTaxRoute: typeof ServicesTaxRoute
   ServicesVatRoute: typeof ServicesVatRoute
 }
 
@@ -223,6 +243,7 @@ const ServicesRouteChildren: ServicesRouteChildren = {
   ServicesEtimsFilingRoute: ServicesEtimsFilingRoute,
   ServicesFixedAssetManagementRoute: ServicesFixedAssetManagementRoute,
   ServicesIncomeTaxRoute: ServicesIncomeTaxRoute,
+  ServicesTaxRoute: ServicesTaxRoute,
   ServicesVatRoute: ServicesVatRoute,
 }
 
