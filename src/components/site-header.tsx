@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, memo } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/assetech-logo.png.asset.json";
 
@@ -10,7 +10,7 @@ const navItems = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-export function SiteHeader() {
+function SiteHeaderComponent() {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -72,3 +72,5 @@ export function SiteHeader() {
   );
 }
 
+// Memoize to prevent unnecessary re-renders when parent updates
+export const SiteHeader = memo(SiteHeaderComponent);

@@ -14,9 +14,9 @@ import {
   CheckCircle2,
 } from "lucide-react";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/")({{
   component: Index,
-});
+}});
 
 const services = [
   { icon: FileCheck2, title: "eTIMS Filing", to: "/services/etims-filing", desc: "Onboarding, invoicing and monthly eTIMS compliance handled end-to-end." },
@@ -34,7 +34,12 @@ function Index() {
       {/* Hero */}
       <section className="relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
         <div className="absolute inset-0 opacity-25">
-          <img src={heroImg} alt="" className="h-full w-full object-cover" />
+          <img
+            src={heroImg}
+            alt="Assetech office in Nakuru"
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
         </div>
         <div className="relative mx-auto grid max-w-6xl gap-10 px-6 py-24 md:grid-cols-2 md:py-32">
           <div className="text-white">
