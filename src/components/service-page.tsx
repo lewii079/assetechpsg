@@ -7,6 +7,7 @@ export type ServicePageProps = {
   eyebrow: string;
   title: string;
   intro: string;
+  whyItMatters?: { title: string; desc: string }[];
   includes: { icon: LucideIcon; title: string; desc: string }[];
   process: { title: string; desc: string }[];
   audience: string[];
@@ -31,6 +32,25 @@ export function ServicePage(p: ServicePageProps) {
           </Link>
         </div>
       </section>
+
+      {p.whyItMatters && p.whyItMatters.length > 0 && (
+        <section className="mx-auto max-w-6xl px-6 py-20">
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary">Why it matters</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">The business case</h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            {p.whyItMatters.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-xl border border-border bg-card p-6"
+                style={{ boxShadow: "var(--shadow-soft)" }}
+              >
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="mx-auto max-w-6xl px-6 py-20">
         <p className="text-sm font-semibold uppercase tracking-widest text-primary">What's included</p>

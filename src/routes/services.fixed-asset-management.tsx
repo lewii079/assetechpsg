@@ -16,6 +16,14 @@ export const Route = createFileRoute("/services/fixed-asset-management")({
       eyebrow="Fixed Asset Management"
       title="Tag, verify and control every asset you own"
       intro="We build and maintain a reliable fixed asset register — from barcode tagging and physical verification to depreciation schedules that align with your audited accounts."
+      whyItMatters={[
+        { title: "Audit readiness", desc: "A verified, reconciled register is the single fastest way to close audit findings on property, plant and equipment and satisfy IAS 16 disclosures." },
+        { title: "Accurate depreciation", desc: "Wrong asset lives and missing disposals distort depreciation, understate profits and inflate your tax bill. A clean register fixes both." },
+        { title: "Loss and theft prevention", desc: "Tagging plus periodic counts make it obvious when assets go missing — deterring loss and creating an accountability trail for staff." },
+        { title: "Insurance and claims", desc: "Insurers require an itemised asset list with values, serials and locations. A live register means faster claims and no under-insurance." },
+        { title: "Smarter capex decisions", desc: "Knowing what you own, where it is and how old it is turns replacement and upgrade decisions from guesswork into data." },
+        { title: "Regulatory compliance", desc: "NGOs, donor-funded projects and public entities are required to maintain accurate asset registers — a missing one puts funding at risk." },
+      ]}
       includes={[
         { icon: ScanBarcode, title: "Asset Tagging", desc: "Durable barcode or QR tags applied to every capitalised asset." },
         { icon: ClipboardList, title: "Physical Verification", desc: "On-site counts to confirm existence, condition and location." },
