@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import heroImg from "@/assets/hero.jpg";
 import {
-  FileCheck2,
+  FileCheck2,,
   Landmark,
   ClipboardList,
   Boxes,
