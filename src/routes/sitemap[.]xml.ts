@@ -11,6 +11,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           "/",
           "/services",
           "/services/etims-filing",
+          "/services/tax",
           "/services/income-tax",
           "/services/vat",
           "/services/fixed-asset-management",
