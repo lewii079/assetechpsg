@@ -15,6 +15,12 @@ export const Route = createFileRoute("/sitemap.xml")({
           "/services/income-tax",
           "/services/vat",
           "/services/fixed-asset-management",
+          "/services/tot",
+          "/services/paye",
+          "/services/withholding-tax",
+          "/services/rental-income-tax",
+          "/services/excise-duty",
+          "/services/capital-gains-tax",
           "/about",
           "/contact",
         ];

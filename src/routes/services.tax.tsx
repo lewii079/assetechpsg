@@ -18,52 +18,71 @@ export const Route = createFileRoute("/services/tax")({
   component: TaxIndex,
 });
 
-type TaxItem = { icon: LucideIcon; title: string; desc: string; to?: "/services/vat" | "/services/income-tax" };
+type TaxItem = {
+  icon: LucideIcon;
+  title: string;
+  desc: string;
+  to?:
+    | "/services/vat"
+    | "/services/income-tax"
+    | "/services/tot"
+    | "/services/paye"
+    | "/services/withholding-tax"
+    | "/services/rental-income-tax"
+    | "/services/excise-duty"
+    | "/services/capital-gains-tax";
+};
 
 const taxes: TaxItem[] = [
   {
     icon: Receipt,
     title: "Value Added Tax (VAT)",
     desc: "VAT is charged at 16% on most goods and services in Kenya. Businesses with taxable turnover above KES 5 million must register, then file monthly returns by the 20th. We handle registration, monthly computations, input VAT reviews, eTIMS reconciliation and refund claims.",
-    to: "/services/vat" as const,
+    to: "/services/vat",
   },
   {
     icon: ShieldCheck,
     title: "Income Tax (Individual & Corporate)",
     desc: "Tax on profits and personal income. Companies pay 30% (resident) or 37.5% (branches of non-residents) on chargeable income and file annual returns within 6 months of year-end. Individuals file by 30 June. We prepare returns, installment tax schedules and tax planning to legally reduce your bill.",
-    to: "/services/income-tax" as const,
+    to: "/services/income-tax",
   },
   {
     icon: Coins,
     title: "Turnover Tax (TOT)",
     desc: "A simplified tax for small businesses with turnover between KES 1 million and KES 25 million. Charged at 3% of gross monthly sales and filed by the 20th of the following month. We register you for TOT, keep the monthly filings current and advise when to graduate to VAT and Income Tax.",
+    to: "/services/tot",
   },
   {
     icon: Users2,
     title: "PAYE (Pay As You Earn)",
     desc: "Monthly tax deducted from employees' salaries under graduated bands up to 35%, plus NSSF, NHIF/SHIF, Housing Levy and NITA. Employers must remit by the 9th of the following month. We run your payroll, generate P9s and file the monthly P10 return.",
+    to: "/services/paye",
   },
   {
     icon: Percent,
     title: "Withholding Tax (WHT)",
     desc: "Tax deducted at source on payments such as professional fees, rent, interest, dividends and management fees. Rates vary from 5% to 20% depending on the payment and residency of the recipient. Certificates must be issued and remitted by the 20th. We compute, remit and reconcile WHT for both payer and recipient.",
+    to: "/services/withholding-tax",
   },
   {
     icon: Home,
     title: "Rental Income Tax (MRI)",
     desc: "Monthly Rental Income Tax at 7.5% of gross rent for resident landlords with annual rental income between KES 288,000 and KES 15 million. Filed monthly by the 20th. We handle registration, filing and record-keeping for landlords and property managers.",
+    to: "/services/rental-income-tax",
   },
   {
     icon: Flame,
     title: "Excise Duty",
     desc: "Levied on specific goods and services such as airtime, data, financial transactions, alcoholic beverages and sugary drinks. Filed monthly by the 20th. We advise on excisable products, register you and manage monthly returns.",
+    to: "/services/excise-duty",
   },
   {
     icon: Building2,
     title: "Capital Gains Tax (CGT)",
     desc: "15% tax on gains from the transfer of property or unquoted shares. Payable at the point of transfer. We compute the gain, prepare supporting schedules and lodge the return with KRA before conveyancing.",
+    to: "/services/capital-gains-tax",
   },
-] as const;
+];
 
 function TaxIndex() {
   return (
