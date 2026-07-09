@@ -34,12 +34,12 @@ function Contact() {
   const onSubmit = async (data: ContactFormData) => {
     setIsLoading(true);
     try {
-      // Open WhatsApp first so browsers treat it as a user-initiated action.
-      window.open(buildWhatsappUrl(data), "_blank", "noopener,noreferrer");
       const result = await submitContactForm(data);
       if (result.success) {
         toast.success(result.message);
         reset();
+        // Navigate the current tab to WhatsApp — always allowed, no popup blocker.
+        window.location.href = buildWhatsappUrl(data);
       } else {
         toast.error(result.message);
       }
