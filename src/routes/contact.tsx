@@ -5,7 +5,7 @@ import { Phone, MapPin, Mail, Clock } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { submitContactForm, contactFormSchema, type ContactFormData } from "@/lib/contact-service";
+import { submitContactForm, contactFormSchema, buildWhatsappUrl, type ContactFormData } from "@/lib/contact-service";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/contact")({
@@ -34,6 +34,8 @@ function Contact() {
   const onSubmit = async (data: ContactFormData) => {
     setIsLoading(true);
     try {
+      // Open WhatsApp first so browsers treat it as a user-initiated action.
+      window.open(buildWhatsappUrl(data), "_blank", "noopener,noreferrer");
       const result = await submitContactForm(data);
       if (result.success) {
         toast.success(result.message);

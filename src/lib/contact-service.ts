@@ -9,37 +9,69 @@ export const contactFormSchema = z.object({
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;
 
+// Owner delivery destinations
+export const OWNER_EMAIL = "nderitulewis2@gmail.com";
+// WhatsApp number in international format, digits only (no + or spaces)
+export const OWNER_WHATSAPP = "254757553243";
+
+function buildMessageText(data: ContactFormData): string {
+  return (
+    `New enquiry from Assetech website\n\n` +
+    `Name: ${data.name}\n` +
+    `Phone: ${data.phone}\n` +
+    `Email: ${data.email}\n\n` +
+    `Message:\n${data.message}`
+  );
+}
+
+export function buildWhatsappUrl(data: ContactFormData): string {
+  const text = encodeURIComponent(buildMessageText(data));
+  return `https://wa.me/${OWNER_WHATSAPP}?text=${text}`;
+}
+
 /**
- * Submit contact form to backend or email service
- * Replace this with your actual backend endpoint or email service (e.g., SendGrid, Resend)
+ * Submits the contact form:
+ *  - Emails the owner via FormSubmit (https://formsubmit.co) — no backend required.
+ *  - Caller is expected to also open the WhatsApp click-to-chat URL from
+ *    buildWhatsappUrl() in a user-initiated handler so the browser allows it.
  */
-export async function submitContactForm(data: ContactFormData): Promise<{ success: boolean; message: string }> {
+export async function submitContactForm(
+  data: ContactFormData,
+): Promise<{ success: boolean; message: string }> {
   try {
-    // Validate data
     const validData = contactFormSchema.parse(data);
 
-    // TODO: Replace with actual backend endpoint
-    // const response = await fetch('/api/contact', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(validData),
-    // });
-    // const result = await response.json();
-    // if (!response.ok) throw new Error(result.message || 'Failed to send message');
-    // return { success: true, message: 'Message sent successfully!' };
+    const payload = new FormData();
+    payload.append("name", validData.name);
+    payload.append("email", validData.email);
+    payload.append("phone", validData.phone);
+    payload.append("message", validData.message);
+    payload.append("_subject", `New enquiry from ${validData.name} — Assetech website`);
+    payload.append("_template", "table");
+    payload.append("_captcha", "false");
 
-    // Temporary: log to console for development
-    console.log("Contact form submission:", validData);
+    const response = await fetch(`https://formsubmit.co/ajax/${OWNER_EMAIL}`, {
+      method: "POST",
+      headers: { Accept: "application/json" },
+      body: payload,
+    });
 
-    // Simulate network delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    if (!response.ok) {
+      throw new Error(`Email service returned ${response.status}`);
+    }
 
-    return { success: true, message: "Message received! We'll get back to you within 24 hours." };
+    return {
+      success: true,
+      message: "Message sent! Opening WhatsApp so you can send it there too.",
+    };
   } catch (error) {
     if (error instanceof z.ZodError) {
-      const firstError = error.errors[0];
-      return { success: false, message: firstError.message };
+      return { success: false, message: error.errors[0].message };
     }
-    return { success: false, message: "Failed to send message. Please try again." };
+    console.error("Contact form submission failed:", error);
+    return {
+      success: false,
+      message: "Couldn't send the email. Please try again or WhatsApp us directly.",
+    };
   }
 }
