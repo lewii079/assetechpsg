@@ -11,6 +11,7 @@ export type ContactFormData = z.infer<typeof contactFormSchema>;
 
 // Owner delivery destinations
 export const OWNER_EMAIL = "nderitulewis2@gmail.com";
+const WEB3FORMS_ACCESS_KEY = "744b601e-8eb3-4e79-90a9-11909270bc17";
 // WhatsApp number in international format, digits only (no + or spaces)
 export const OWNER_WHATSAPP = "254757553243";
 
@@ -41,23 +42,23 @@ export async function submitContactForm(
   try {
     const validData = contactFormSchema.parse(data);
 
-    const payload = new FormData();
-    payload.append("name", validData.name);
-    payload.append("email", validData.email);
-    payload.append("phone", validData.phone);
-    payload.append("message", validData.message);
-    payload.append("_subject", `New enquiry from ${validData.name} — Assetech website`);
-    payload.append("_template", "table");
-    payload.append("_captcha", "false");
-
-    const response = await fetch(`https://formsubmit.co/ajax/${OWNER_EMAIL}`, {
+    const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      headers: { Accept: "application/json" },
-      body: payload,
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: `New enquiry from ${validData.name} — Assetech website`,
+        from_name: "Assetech Website",
+        name: validData.name,
+        email: validData.email,
+        phone: validData.phone,
+        message: validData.message,
+      }),
     });
 
-    if (!response.ok) {
-      throw new Error(`Email service returned ${response.status}`);
+    const result = (await response.json().catch(() => ({}))) as { success?: boolean; message?: string };
+    if (!response.ok || result.success === false) {
+      throw new Error(result.message || `Email service returned ${response.status}`);
     }
 
     return {
