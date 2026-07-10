@@ -39,7 +39,8 @@ function Contact() {
         toast.success(result.message);
         reset();
         // Navigate the current tab to WhatsApp — always allowed, no popup blocker.
-        window.location.href = buildWhatsappUrl(data);
+        // Open in a new tab — the preview iframe blocks top-level navigation to wa.me
+        window.open(buildWhatsappUrl(data), "_blank", "noopener,noreferrer");
       } else {
         toast.error(result.message);
       }
