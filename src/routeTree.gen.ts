@@ -17,6 +17,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServicesTaxRouteImport } from './routes/services.tax'
 import { Route as ServicesFixedAssetManagementRouteImport } from './routes/services.fixed-asset-management'
 import { Route as ServicesEtimsFilingRouteImport } from './routes/services.etims-filing'
+import { Route as ServicesBusinessConsultancyRouteImport } from './routes/services.business-consultancy'
+import { Route as ServicesAuditAssuranceRouteImport } from './routes/services.audit-assurance'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -59,6 +61,17 @@ const ServicesEtimsFilingRoute = ServicesEtimsFilingRouteImport.update({
   path: '/etims-filing',
   getParentRoute: () => ServicesRoute,
 } as any)
+const ServicesBusinessConsultancyRoute =
+  ServicesBusinessConsultancyRouteImport.update({
+    id: '/business-consultancy',
+    path: '/business-consultancy',
+    getParentRoute: () => ServicesRoute,
+  } as any)
+const ServicesAuditAssuranceRoute = ServicesAuditAssuranceRouteImport.update({
+  id: '/audit-assurance',
+  path: '/audit-assurance',
+  getParentRoute: () => ServicesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -66,6 +79,8 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/services/audit-assurance': typeof ServicesAuditAssuranceRoute
+  '/services/business-consultancy': typeof ServicesBusinessConsultancyRoute
   '/services/etims-filing': typeof ServicesEtimsFilingRoute
   '/services/fixed-asset-management': typeof ServicesFixedAssetManagementRoute
   '/services/tax': typeof ServicesTaxRoute
@@ -76,6 +91,8 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/services/audit-assurance': typeof ServicesAuditAssuranceRoute
+  '/services/business-consultancy': typeof ServicesBusinessConsultancyRoute
   '/services/etims-filing': typeof ServicesEtimsFilingRoute
   '/services/fixed-asset-management': typeof ServicesFixedAssetManagementRoute
   '/services/tax': typeof ServicesTaxRoute
@@ -87,6 +104,8 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/services/audit-assurance': typeof ServicesAuditAssuranceRoute
+  '/services/business-consultancy': typeof ServicesBusinessConsultancyRoute
   '/services/etims-filing': typeof ServicesEtimsFilingRoute
   '/services/fixed-asset-management': typeof ServicesFixedAssetManagementRoute
   '/services/tax': typeof ServicesTaxRoute
@@ -99,6 +118,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/services'
     | '/sitemap.xml'
+    | '/services/audit-assurance'
+    | '/services/business-consultancy'
     | '/services/etims-filing'
     | '/services/fixed-asset-management'
     | '/services/tax'
@@ -109,6 +130,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/services'
     | '/sitemap.xml'
+    | '/services/audit-assurance'
+    | '/services/business-consultancy'
     | '/services/etims-filing'
     | '/services/fixed-asset-management'
     | '/services/tax'
@@ -119,6 +142,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/services'
     | '/sitemap.xml'
+    | '/services/audit-assurance'
+    | '/services/business-consultancy'
     | '/services/etims-filing'
     | '/services/fixed-asset-management'
     | '/services/tax'
@@ -190,16 +215,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesEtimsFilingRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/business-consultancy': {
+      id: '/services/business-consultancy'
+      path: '/business-consultancy'
+      fullPath: '/services/business-consultancy'
+      preLoaderRoute: typeof ServicesBusinessConsultancyRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/audit-assurance': {
+      id: '/services/audit-assurance'
+      path: '/audit-assurance'
+      fullPath: '/services/audit-assurance'
+      preLoaderRoute: typeof ServicesAuditAssuranceRouteImport
+      parentRoute: typeof ServicesRoute
+    }
   }
 }
 
 interface ServicesRouteChildren {
+  ServicesAuditAssuranceRoute: typeof ServicesAuditAssuranceRoute
+  ServicesBusinessConsultancyRoute: typeof ServicesBusinessConsultancyRoute
   ServicesEtimsFilingRoute: typeof ServicesEtimsFilingRoute
   ServicesFixedAssetManagementRoute: typeof ServicesFixedAssetManagementRoute
   ServicesTaxRoute: typeof ServicesTaxRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
+  ServicesAuditAssuranceRoute: ServicesAuditAssuranceRoute,
+  ServicesBusinessConsultancyRoute: ServicesBusinessConsultancyRoute,
   ServicesEtimsFilingRoute: ServicesEtimsFilingRoute,
   ServicesFixedAssetManagementRoute: ServicesFixedAssetManagementRoute,
   ServicesTaxRoute: ServicesTaxRoute,
