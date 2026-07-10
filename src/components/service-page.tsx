@@ -7,6 +7,10 @@ export type ServicePageProps = {
   eyebrow: string;
   title: string;
   intro: string;
+  overview?: { heading: string; paragraphs: string[] };
+  whyImportant?: { title: string; desc: string }[];
+  whyAssetech?: { title: string; desc: string }[];
+  subServices?: { title: string; desc: string; bullets: string[] }[];
   whyItMatters?: { title: string; desc: string }[];
   includes: { icon: LucideIcon; title: string; desc: string }[];
   process: { title: string; desc: string }[];
@@ -32,6 +36,39 @@ export function ServicePage(p: ServicePageProps) {
           </Link>
         </div>
       </section>
+
+      {p.overview && (
+        <section className="mx-auto max-w-6xl px-6 py-20">
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary">Overview</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">{p.overview.heading}</h2>
+          <div className="mt-6 max-w-3xl space-y-5 text-base leading-relaxed text-muted-foreground">
+            {p.overview.paragraphs.map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {p.whyImportant && p.whyImportant.length > 0 && (
+        <section className="border-y border-border bg-card">
+          <div className="mx-auto max-w-6xl px-6 py-20">
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary">Why it's important</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">The stakes for your business</h2>
+            <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {p.whyImportant.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-xl border border-border bg-background p-6"
+                  style={{ boxShadow: "var(--shadow-soft)" }}
+                >
+                  <h3 className="text-lg font-semibold">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {p.whyItMatters && p.whyItMatters.length > 0 && (
         <section className="mx-auto max-w-6xl px-6 py-20">
@@ -72,6 +109,35 @@ export function ServicePage(p: ServicePageProps) {
         </div>
       </section>
 
+      {p.subServices && p.subServices.length > 0 && (
+        <section className="border-y border-border bg-card">
+          <div className="mx-auto max-w-6xl px-6 py-20">
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary">In detail</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Each tax head, explained</h2>
+            <div className="mt-10 grid gap-6 md:grid-cols-2">
+              {p.subServices.map((s) => (
+                <div
+                  key={s.title}
+                  className="rounded-xl border border-border bg-background p-7"
+                  style={{ boxShadow: "var(--shadow-soft)" }}
+                >
+                  <h3 className="text-xl font-semibold">{s.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
+                  <ul className="mt-4 space-y-2">
+                    {s.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2 text-sm text-foreground">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="border-y border-border bg-card">
         <div className="mx-auto max-w-6xl px-6 py-20">
           <p className="text-sm font-semibold uppercase tracking-widest text-primary">Our process</p>
@@ -89,6 +155,25 @@ export function ServicePage(p: ServicePageProps) {
           </ol>
         </div>
       </section>
+
+      {p.whyAssetech && p.whyAssetech.length > 0 && (
+        <section className="mx-auto max-w-6xl px-6 py-20">
+          <p className="text-sm font-semibold uppercase tracking-widest text-primary">Why Assetech</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Why choose our team</h2>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {p.whyAssetech.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-xl border border-border bg-card p-6"
+                style={{ boxShadow: "var(--shadow-soft)" }}
+              >
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-2">
         <div>
