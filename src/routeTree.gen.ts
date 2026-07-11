@@ -14,9 +14,17 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesWithholdingTaxRouteImport } from './routes/services.withholding-tax'
+import { Route as ServicesVatRouteImport } from './routes/services.vat'
+import { Route as ServicesTotRouteImport } from './routes/services.tot'
 import { Route as ServicesTaxRouteImport } from './routes/services.tax'
+import { Route as ServicesRentalIncomeTaxRouteImport } from './routes/services.rental-income-tax'
+import { Route as ServicesPayeRouteImport } from './routes/services.paye'
+import { Route as ServicesIncomeTaxRouteImport } from './routes/services.income-tax'
 import { Route as ServicesFixedAssetManagementRouteImport } from './routes/services.fixed-asset-management'
+import { Route as ServicesExciseDutyRouteImport } from './routes/services.excise-duty'
 import { Route as ServicesEtimsFilingRouteImport } from './routes/services.etims-filing'
+import { Route as ServicesCapitalGainsTaxRouteImport } from './routes/services.capital-gains-tax'
 import { Route as ServicesBusinessConsultancyRouteImport } from './routes/services.business-consultancy'
 import { Route as ServicesAuditAssuranceRouteImport } from './routes/services.audit-assurance'
 
@@ -45,9 +53,39 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesWithholdingTaxRoute = ServicesWithholdingTaxRouteImport.update({
+  id: '/withholding-tax',
+  path: '/withholding-tax',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesVatRoute = ServicesVatRouteImport.update({
+  id: '/vat',
+  path: '/vat',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesTotRoute = ServicesTotRouteImport.update({
+  id: '/tot',
+  path: '/tot',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesTaxRoute = ServicesTaxRouteImport.update({
   id: '/tax',
   path: '/tax',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesRentalIncomeTaxRoute = ServicesRentalIncomeTaxRouteImport.update({
+  id: '/rental-income-tax',
+  path: '/rental-income-tax',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesPayeRoute = ServicesPayeRouteImport.update({
+  id: '/paye',
+  path: '/paye',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesIncomeTaxRoute = ServicesIncomeTaxRouteImport.update({
+  id: '/income-tax',
+  path: '/income-tax',
   getParentRoute: () => ServicesRoute,
 } as any)
 const ServicesFixedAssetManagementRoute =
@@ -56,9 +94,19 @@ const ServicesFixedAssetManagementRoute =
     path: '/fixed-asset-management',
     getParentRoute: () => ServicesRoute,
   } as any)
+const ServicesExciseDutyRoute = ServicesExciseDutyRouteImport.update({
+  id: '/excise-duty',
+  path: '/excise-duty',
+  getParentRoute: () => ServicesRoute,
+} as any)
 const ServicesEtimsFilingRoute = ServicesEtimsFilingRouteImport.update({
   id: '/etims-filing',
   path: '/etims-filing',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesCapitalGainsTaxRoute = ServicesCapitalGainsTaxRouteImport.update({
+  id: '/capital-gains-tax',
+  path: '/capital-gains-tax',
   getParentRoute: () => ServicesRoute,
 } as any)
 const ServicesBusinessConsultancyRoute =
@@ -81,9 +129,17 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/audit-assurance': typeof ServicesAuditAssuranceRoute
   '/services/business-consultancy': typeof ServicesBusinessConsultancyRoute
+  '/services/capital-gains-tax': typeof ServicesCapitalGainsTaxRoute
   '/services/etims-filing': typeof ServicesEtimsFilingRoute
+  '/services/excise-duty': typeof ServicesExciseDutyRoute
   '/services/fixed-asset-management': typeof ServicesFixedAssetManagementRoute
+  '/services/income-tax': typeof ServicesIncomeTaxRoute
+  '/services/paye': typeof ServicesPayeRoute
+  '/services/rental-income-tax': typeof ServicesRentalIncomeTaxRoute
   '/services/tax': typeof ServicesTaxRoute
+  '/services/tot': typeof ServicesTotRoute
+  '/services/vat': typeof ServicesVatRoute
+  '/services/withholding-tax': typeof ServicesWithholdingTaxRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -93,9 +149,17 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/audit-assurance': typeof ServicesAuditAssuranceRoute
   '/services/business-consultancy': typeof ServicesBusinessConsultancyRoute
+  '/services/capital-gains-tax': typeof ServicesCapitalGainsTaxRoute
   '/services/etims-filing': typeof ServicesEtimsFilingRoute
+  '/services/excise-duty': typeof ServicesExciseDutyRoute
   '/services/fixed-asset-management': typeof ServicesFixedAssetManagementRoute
+  '/services/income-tax': typeof ServicesIncomeTaxRoute
+  '/services/paye': typeof ServicesPayeRoute
+  '/services/rental-income-tax': typeof ServicesRentalIncomeTaxRoute
   '/services/tax': typeof ServicesTaxRoute
+  '/services/tot': typeof ServicesTotRoute
+  '/services/vat': typeof ServicesVatRoute
+  '/services/withholding-tax': typeof ServicesWithholdingTaxRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -106,9 +170,17 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/audit-assurance': typeof ServicesAuditAssuranceRoute
   '/services/business-consultancy': typeof ServicesBusinessConsultancyRoute
+  '/services/capital-gains-tax': typeof ServicesCapitalGainsTaxRoute
   '/services/etims-filing': typeof ServicesEtimsFilingRoute
+  '/services/excise-duty': typeof ServicesExciseDutyRoute
   '/services/fixed-asset-management': typeof ServicesFixedAssetManagementRoute
+  '/services/income-tax': typeof ServicesIncomeTaxRoute
+  '/services/paye': typeof ServicesPayeRoute
+  '/services/rental-income-tax': typeof ServicesRentalIncomeTaxRoute
   '/services/tax': typeof ServicesTaxRoute
+  '/services/tot': typeof ServicesTotRoute
+  '/services/vat': typeof ServicesVatRoute
+  '/services/withholding-tax': typeof ServicesWithholdingTaxRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -120,9 +192,17 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/services/audit-assurance'
     | '/services/business-consultancy'
+    | '/services/capital-gains-tax'
     | '/services/etims-filing'
+    | '/services/excise-duty'
     | '/services/fixed-asset-management'
+    | '/services/income-tax'
+    | '/services/paye'
+    | '/services/rental-income-tax'
     | '/services/tax'
+    | '/services/tot'
+    | '/services/vat'
+    | '/services/withholding-tax'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -132,9 +212,17 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/services/audit-assurance'
     | '/services/business-consultancy'
+    | '/services/capital-gains-tax'
     | '/services/etims-filing'
+    | '/services/excise-duty'
     | '/services/fixed-asset-management'
+    | '/services/income-tax'
+    | '/services/paye'
+    | '/services/rental-income-tax'
     | '/services/tax'
+    | '/services/tot'
+    | '/services/vat'
+    | '/services/withholding-tax'
   id:
     | '__root__'
     | '/'
@@ -144,9 +232,17 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/services/audit-assurance'
     | '/services/business-consultancy'
+    | '/services/capital-gains-tax'
     | '/services/etims-filing'
+    | '/services/excise-duty'
     | '/services/fixed-asset-management'
+    | '/services/income-tax'
+    | '/services/paye'
+    | '/services/rental-income-tax'
     | '/services/tax'
+    | '/services/tot'
+    | '/services/vat'
+    | '/services/withholding-tax'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -194,11 +290,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/withholding-tax': {
+      id: '/services/withholding-tax'
+      path: '/withholding-tax'
+      fullPath: '/services/withholding-tax'
+      preLoaderRoute: typeof ServicesWithholdingTaxRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/vat': {
+      id: '/services/vat'
+      path: '/vat'
+      fullPath: '/services/vat'
+      preLoaderRoute: typeof ServicesVatRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/tot': {
+      id: '/services/tot'
+      path: '/tot'
+      fullPath: '/services/tot'
+      preLoaderRoute: typeof ServicesTotRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/tax': {
       id: '/services/tax'
       path: '/tax'
       fullPath: '/services/tax'
       preLoaderRoute: typeof ServicesTaxRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/rental-income-tax': {
+      id: '/services/rental-income-tax'
+      path: '/rental-income-tax'
+      fullPath: '/services/rental-income-tax'
+      preLoaderRoute: typeof ServicesRentalIncomeTaxRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/paye': {
+      id: '/services/paye'
+      path: '/paye'
+      fullPath: '/services/paye'
+      preLoaderRoute: typeof ServicesPayeRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/income-tax': {
+      id: '/services/income-tax'
+      path: '/income-tax'
+      fullPath: '/services/income-tax'
+      preLoaderRoute: typeof ServicesIncomeTaxRouteImport
       parentRoute: typeof ServicesRoute
     }
     '/services/fixed-asset-management': {
@@ -208,11 +346,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesFixedAssetManagementRouteImport
       parentRoute: typeof ServicesRoute
     }
+    '/services/excise-duty': {
+      id: '/services/excise-duty'
+      path: '/excise-duty'
+      fullPath: '/services/excise-duty'
+      preLoaderRoute: typeof ServicesExciseDutyRouteImport
+      parentRoute: typeof ServicesRoute
+    }
     '/services/etims-filing': {
       id: '/services/etims-filing'
       path: '/etims-filing'
       fullPath: '/services/etims-filing'
       preLoaderRoute: typeof ServicesEtimsFilingRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/capital-gains-tax': {
+      id: '/services/capital-gains-tax'
+      path: '/capital-gains-tax'
+      fullPath: '/services/capital-gains-tax'
+      preLoaderRoute: typeof ServicesCapitalGainsTaxRouteImport
       parentRoute: typeof ServicesRoute
     }
     '/services/business-consultancy': {
@@ -235,17 +387,33 @@ declare module '@tanstack/react-router' {
 interface ServicesRouteChildren {
   ServicesAuditAssuranceRoute: typeof ServicesAuditAssuranceRoute
   ServicesBusinessConsultancyRoute: typeof ServicesBusinessConsultancyRoute
+  ServicesCapitalGainsTaxRoute: typeof ServicesCapitalGainsTaxRoute
   ServicesEtimsFilingRoute: typeof ServicesEtimsFilingRoute
+  ServicesExciseDutyRoute: typeof ServicesExciseDutyRoute
   ServicesFixedAssetManagementRoute: typeof ServicesFixedAssetManagementRoute
+  ServicesIncomeTaxRoute: typeof ServicesIncomeTaxRoute
+  ServicesPayeRoute: typeof ServicesPayeRoute
+  ServicesRentalIncomeTaxRoute: typeof ServicesRentalIncomeTaxRoute
   ServicesTaxRoute: typeof ServicesTaxRoute
+  ServicesTotRoute: typeof ServicesTotRoute
+  ServicesVatRoute: typeof ServicesVatRoute
+  ServicesWithholdingTaxRoute: typeof ServicesWithholdingTaxRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
   ServicesAuditAssuranceRoute: ServicesAuditAssuranceRoute,
   ServicesBusinessConsultancyRoute: ServicesBusinessConsultancyRoute,
+  ServicesCapitalGainsTaxRoute: ServicesCapitalGainsTaxRoute,
   ServicesEtimsFilingRoute: ServicesEtimsFilingRoute,
+  ServicesExciseDutyRoute: ServicesExciseDutyRoute,
   ServicesFixedAssetManagementRoute: ServicesFixedAssetManagementRoute,
+  ServicesIncomeTaxRoute: ServicesIncomeTaxRoute,
+  ServicesPayeRoute: ServicesPayeRoute,
+  ServicesRentalIncomeTaxRoute: ServicesRentalIncomeTaxRoute,
   ServicesTaxRoute: ServicesTaxRoute,
+  ServicesTotRoute: ServicesTotRoute,
+  ServicesVatRoute: ServicesVatRoute,
+  ServicesWithholdingTaxRoute: ServicesWithholdingTaxRoute,
 }
 
 const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
