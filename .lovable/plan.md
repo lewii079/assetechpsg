@@ -1,95 +1,46 @@
 ## Goal
 
-Five top-level service pages — one per service — each with a deep, plain-language explanation of the service, why it matters, and why to choose Assetech. Not a tree of sub-pages per tax head.
+1. Split the Tax page so each tax head is its own route (not stacked inline on `/services/tax`).
+2. Add a Services dropdown in the top nav that lists every service page.
+3. Keep the existing "Learn more" cards on `/services` (already correctly linked).
 
-## The five service pages
+## 1. Split Tax into per-head routes
 
-1. **eTIMS & iTax** → `/services/etims-filing` (existing route, rewritten)
-2. **Tax** → `/services/tax` (existing route, rewritten as one long page covering VAT, Income Tax, PAYE, TOT, WHT, Rental, Excise, CGT as sections — not links out)
-3. **Audit & Assurance** → `/services/audit-assurance` (new)
-4. **Fixed Asset Management** → `/services/fixed-asset-management` (existing, rewritten)
-5. **Business Consultancy** → `/services/business-consultancy` (new)
+Currently `src/routes/services.tax.tsx` renders VAT, Income Tax, PAYE/statutory, TOT, WHT, Rental, Excise and CGT as inline `subServices` on one page. Replace with:
 
-## Extend the shared ServicePage template
+- `/services/tax` → overview hub page: intro, "why tax matters", short cards linking out to each tax head, process, why Assetech, FAQs. No more inline sub-service walls.
+- New route files, each a full `ServicePage` (hero, overview 3–4 paragraphs, whyImportant, includes, process, whyAssetech, audience, FAQs):
+  - `src/routes/services.vat.tsx` → `/services/vat`
+  - `src/routes/services.income-tax.tsx` → `/services/income-tax`
+  - `src/routes/services.paye.tsx` → `/services/paye` (covers PAYE + NSSF + SHIF + AHL + NITA together — they are filed on the same payroll cycle)
+  - `src/routes/services.tot.tsx` → `/services/tot`
+  - `src/routes/services.withholding-tax.tsx` → `/services/withholding-tax`
+  - `src/routes/services.rental-income-tax.tsx` → `/services/rental-income-tax`
+  - `src/routes/services.excise-duty.tsx` → `/services/excise-duty`
+  - `src/routes/services.capital-gains-tax.tsx` → `/services/capital-gains-tax`
 
-Add optional props to `src/components/service-page.tsx` so each page can carry the deeper narrative without breaking existing pages:
+Each page: Kenya-specific rates/deadlines, why it matters, penalties, what Assetech does, why choose Assetech, FAQs.
 
-- `overview: { heading: string; paragraphs: string[] }` — 3–5 paragraph plain-language explanation of what the service is, rendered right after the hero.
-- `whyImportant: { title: string; desc: string }[]` — 4–6 cards on why the service matters (risk, penalties, growth, compliance, decision-making).
-- `whyAssetech: { title: string; desc: string }[]` — 4–6 cards on why choose Assetech (qualified consultants, Nakuru presence, KRA experience, sector coverage, technology, response times).
-- `subServices?: { title: string; desc: string; bullets: string[] }[]` — used mainly by the Tax page to cover each tax head inline (VAT, Income Tax, PAYE, TOT, WHT, MRI, Excise, CGT) as detailed sections instead of separate routes.
+## 2. Services dropdown in the header
 
-Existing sections (`whyItMatters`, `includes`, `process`, `audience`, `faqs`) stay; new props render only when passed.
+Edit `src/components/site-header.tsx`:
 
-## Content plan per page
+- Desktop: replace the single "Services" link with a hover/focus dropdown. The label itself still navigates to `/services`; a caret opens a panel listing all service pages, grouped:
+  - **Core services**: eTIMS & iTax, Tax (hub), Audit & Assurance, Fixed Asset Management, Business Consultancy
+  - **Tax services**: VAT, Income Tax, PAYE & Statutory, TOT, Withholding Tax, Rental Income, Excise Duty, Capital Gains Tax
+- Mobile menu: same links rendered as an indented sub-list under "Services", tap-to-navigate, closes the menu.
+- Close on Escape, outside click, and link click. No new dependencies.
 
-Each page uses the same rich structure:
-- Hero (eyebrow, title, intro)
-- Overview (3–5 paragraphs)
-- Why this service is important (cards)
-- What's included / deliverables (existing `includes` grid, 6 items)
-- Sub-services section (Tax page only: 8 tax heads inline)
-- Our process (4 steps)
-- Why choose Assetech (cards)
-- Who it's for
-- FAQs (4–6)
-- CTA
+## 3. Services index (`src/routes/services.tsx`)
 
-### 1. eTIMS & iTax (`services.etims-filing.tsx`)
-Overview: what eTIMS is, KRA mandate, iTax portal, who must onboard, real-time invoice transmission, monthly filing cycle.
-Why important: penalties (KES 1M or 2× tax), input VAT disallowance for buyers, audit exposure, cash-flow impact.
-Why Assetech: registered consultants, hands-on with eTIMS Online/Client/VSCU, backfill experience, training for staff.
+Unchanged — 5 core-service cards with `Learn more` links (already wired). The Tax card still points to `/services/tax`, which now becomes the hub linking to each tax-head page.
 
-### 2. Tax (`services.tax.tsx`)
-Overview: Kenya's self-assessment regime, iTax, calendar, penalties framework.
-Why important: compliance, penalty avoidance, planning, refunds, KRA relationship.
-Sub-services (inline detailed sections): VAT, Income Tax (individual & corporate), PAYE + statutory (NSSF/SHIF/AHL/NITA), TOT, Withholding Tax, Monthly Rental Income, Excise Duty, Capital Gains Tax. Each has 2–3 paragraph explanation + rate/deadline + who it applies to.
-Why Assetech: multi-tax coverage, KRA correspondence handled, planning not just filing.
+## 4. Sitemap
 
-### 3. Audit & Assurance (`services.audit-assurance.tsx`, new)
-Overview: statutory audit under Companies Act 2015, ISA framework, internal audit, donor/grant audits, forensic reviews.
-Why important: regulator/lender/donor confidence, fraud detection, board assurance, insurance.
-Includes: audit prep, working papers, internal audit function, risk & controls, forensic reviews, donor compliance.
-Why Assetech: ICPAK-aligned methodology, audit-firm-ready deliverables, sector experience.
-
-### 4. Fixed Asset Management (`services.fixed-asset-management.tsx`, rewritten)
-Overview: what a fixed asset register is, tagging & barcoding, physical verification, IAS 16 componentisation, depreciation policy.
-Why important: audit adjustments, insurance claims, capex decisions, loss/theft prevention, IFRS compliance.
-Includes: tagging, verification, register build/update, depreciation schedules, disposal management, capex advisory.
-Why Assetech: field teams, barcode hardware, integration with accounting systems.
-
-### 5. Business Consultancy (`services.business-consultancy.tsx`, new)
-Overview: bookkeeping, management accounts, budgeting & cash flow, SOPs, business registration, systems rollout (QuickBooks/Sage/Zoho), compliance training.
-Why important: informed decisions, funder readiness, scaling without chaos, staff capability.
-Includes: bookkeeping, management reporting, budgeting, systems setup, SOP writing, training.
-Why Assetech: cross-functional team (accountants + tax + audit), Nakuru presence for onsite work.
-
-## Wire up the services index
-
-In `src/routes/services.tsx`:
-- Trim to five cards (merge current "eTIMS Onboarding & Filing" → "eTIMS & iTax").
-- Add `to` on all five so every card links to its detail page.
-- Add a short lead-in above the grid explaining that each service page has the full detail.
-
-## Cleanup / route hygiene
-
-The eight per-tax-head route files (`services.paye.tsx`, `services.tot.tsx`, `services.vat.tsx`, `services.income-tax.tsx`, `services.withholding-tax.tsx`, `services.rental-income-tax.tsx`, `services.excise-duty.tsx`, `services.capital-gains-tax.tsx`) are no longer part of the requested structure. Options:
-
-- **A. Delete them** (cleanest — everything about Tax lives on `/services/tax`).
-- **B. Keep as hidden deep-links** (they stay accessible if someone has the URL, but nothing links to them).
-
-Default: **A. Delete**, since the user asked for one Tax page. Confirm below.
-
-## Sitemap
-
-Update `src/routes/sitemap[.]xml.ts` to list exactly the 5 service URLs plus root pages; remove the per-tax URLs if we delete them.
+Add the 8 new tax URLs to `src/routes/sitemap[.]xml.ts`.
 
 ## Out of scope
 
-- Backend, forms, CMS, pricing.
-- Design overhaul beyond additive sections in `ServicePage`.
-- New services beyond the five listed.
-
-## Question before I build
-
-Delete the eight per-tax-head sub-pages (recommended), or keep them as hidden deep-links? Default is delete.
+- No design overhaul, no backend, no forms.
+- No changes to About / Contact / Home / Footer.
+- No changes to `ServicePage` template — its existing props already cover the per-head pages.
