@@ -11,17 +11,6 @@ const coreServices = [
   { to: "/services/business-consultancy", label: "Business Consultancy" },
 ] as const;
 
-const taxServices = [
-  { to: "/services/vat", label: "VAT" },
-  { to: "/services/income-tax", label: "Income Tax" },
-  { to: "/services/paye", label: "PAYE & Statutory" },
-  { to: "/services/tot", label: "Turnover Tax (TOT)" },
-  { to: "/services/withholding-tax", label: "Withholding Tax" },
-  { to: "/services/rental-income-tax", label: "Rental Income (MRI)" },
-  { to: "/services/excise-duty", label: "Excise Duty" },
-  { to: "/services/capital-gains-tax", label: "Capital Gains Tax" },
-] as const;
-
 function SiteHeaderComponent() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -79,39 +68,23 @@ function SiteHeaderComponent() {
                 Services <ChevronDown className="h-3.5 w-3.5" />
               </button>
               {servicesOpen && (
-                <div className="absolute left-1/2 top-full z-50 w-[560px] -translate-x-1/2 pt-2">
+                <div className="absolute left-1/2 top-full z-50 w-[280px] -translate-x-1/2 pt-2">
                   <div className="rounded-xl border border-border bg-background p-5 shadow-xl">
-                    <div className="grid grid-cols-2 gap-6">
-                      <div>
-                        <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">Core services</p>
-                        <ul className="space-y-1">
-                          <li>
-                            <Link to="/services" onClick={() => setServicesOpen(false)} className="block rounded px-2 py-1.5 text-sm font-semibold text-foreground hover:bg-muted">
-                              All services →
-                            </Link>
-                          </li>
-                          {coreServices.map((s) => (
-                            <li key={s.to}>
-                              <Link to={s.to} onClick={() => setServicesOpen(false)} className="block rounded px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-primary">
-                                {s.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div>
-                        <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">Tax services</p>
-                        <ul className="space-y-1">
-                          {taxServices.map((s) => (
-                            <li key={s.to}>
-                              <Link to={s.to} onClick={() => setServicesOpen(false)} className="block rounded px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-primary">
-                                {s.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-primary">Core services</p>
+                    <ul className="space-y-1">
+                      <li>
+                        <Link to="/services" onClick={() => setServicesOpen(false)} className="block rounded px-2 py-1.5 text-sm font-semibold text-foreground hover:bg-muted">
+                          All services →
+                        </Link>
+                      </li>
+                      {coreServices.map((s) => (
+                        <li key={s.to}>
+                          <Link to={s.to} onClick={() => setServicesOpen(false)} className="block rounded px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-primary">
+                            {s.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               )}
@@ -157,14 +130,7 @@ function SiteHeaderComponent() {
                 Services
               </Link>
               <div className="ml-3 border-l border-border pl-3">
-                <p className="mt-1 mb-1 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">Core</p>
                 {coreServices.map((s) => (
-                  <Link key={s.to} to={s.to} onClick={() => setOpen(false)} className="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-primary" activeProps={{ className: "text-primary bg-muted" }}>
-                    {s.label}
-                  </Link>
-                ))}
-                <p className="mt-3 mb-1 text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">Tax</p>
-                {taxServices.map((s) => (
                   <Link key={s.to} to={s.to} onClick={() => setOpen(false)} className="block rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-primary" activeProps={{ className: "text-primary bg-muted" }}>
                     {s.label}
                   </Link>
