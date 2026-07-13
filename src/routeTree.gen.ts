@@ -10,10 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as ServicesWithholdingTaxRouteImport } from './routes/services.withholding-tax'
 import { Route as ServicesVatRouteImport } from './routes/services.vat'
 import { Route as ServicesTotRouteImport } from './routes/services.tot'
@@ -33,11 +33,6 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -53,79 +48,83 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesWithholdingTaxRoute = ServicesWithholdingTaxRouteImport.update({
-  id: '/withholding-tax',
-  path: '/withholding-tax',
-  getParentRoute: () => ServicesRoute,
+  id: '/services/withholding-tax',
+  path: '/services/withholding-tax',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesVatRoute = ServicesVatRouteImport.update({
-  id: '/vat',
-  path: '/vat',
-  getParentRoute: () => ServicesRoute,
+  id: '/services/vat',
+  path: '/services/vat',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesTotRoute = ServicesTotRouteImport.update({
-  id: '/tot',
-  path: '/tot',
-  getParentRoute: () => ServicesRoute,
+  id: '/services/tot',
+  path: '/services/tot',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesTaxRoute = ServicesTaxRouteImport.update({
-  id: '/tax',
-  path: '/tax',
-  getParentRoute: () => ServicesRoute,
+  id: '/services/tax',
+  path: '/services/tax',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRentalIncomeTaxRoute = ServicesRentalIncomeTaxRouteImport.update({
-  id: '/rental-income-tax',
-  path: '/rental-income-tax',
-  getParentRoute: () => ServicesRoute,
+  id: '/services/rental-income-tax',
+  path: '/services/rental-income-tax',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesPayeRoute = ServicesPayeRouteImport.update({
-  id: '/paye',
-  path: '/paye',
-  getParentRoute: () => ServicesRoute,
+  id: '/services/paye',
+  path: '/services/paye',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesIncomeTaxRoute = ServicesIncomeTaxRouteImport.update({
-  id: '/income-tax',
-  path: '/income-tax',
-  getParentRoute: () => ServicesRoute,
+  id: '/services/income-tax',
+  path: '/services/income-tax',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesFixedAssetManagementRoute =
   ServicesFixedAssetManagementRouteImport.update({
-    id: '/fixed-asset-management',
-    path: '/fixed-asset-management',
-    getParentRoute: () => ServicesRoute,
+    id: '/services/fixed-asset-management',
+    path: '/services/fixed-asset-management',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const ServicesExciseDutyRoute = ServicesExciseDutyRouteImport.update({
-  id: '/excise-duty',
-  path: '/excise-duty',
-  getParentRoute: () => ServicesRoute,
+  id: '/services/excise-duty',
+  path: '/services/excise-duty',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesEtimsFilingRoute = ServicesEtimsFilingRouteImport.update({
-  id: '/etims-filing',
-  path: '/etims-filing',
-  getParentRoute: () => ServicesRoute,
+  id: '/services/etims-filing',
+  path: '/services/etims-filing',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesCapitalGainsTaxRoute = ServicesCapitalGainsTaxRouteImport.update({
-  id: '/capital-gains-tax',
-  path: '/capital-gains-tax',
-  getParentRoute: () => ServicesRoute,
+  id: '/services/capital-gains-tax',
+  path: '/services/capital-gains-tax',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesBusinessConsultancyRoute =
   ServicesBusinessConsultancyRouteImport.update({
-    id: '/business-consultancy',
-    path: '/business-consultancy',
-    getParentRoute: () => ServicesRoute,
+    id: '/services/business-consultancy',
+    path: '/services/business-consultancy',
+    getParentRoute: () => rootRouteImport,
   } as any)
 const ServicesAuditAssuranceRoute = ServicesAuditAssuranceRouteImport.update({
-  id: '/audit-assurance',
-  path: '/audit-assurance',
-  getParentRoute: () => ServicesRoute,
+  id: '/services/audit-assurance',
+  path: '/services/audit-assurance',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/audit-assurance': typeof ServicesAuditAssuranceRoute
   '/services/business-consultancy': typeof ServicesBusinessConsultancyRoute
@@ -140,12 +139,12 @@ export interface FileRoutesByFullPath {
   '/services/tot': typeof ServicesTotRoute
   '/services/vat': typeof ServicesVatRoute
   '/services/withholding-tax': typeof ServicesWithholdingTaxRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/audit-assurance': typeof ServicesAuditAssuranceRoute
   '/services/business-consultancy': typeof ServicesBusinessConsultancyRoute
@@ -160,13 +159,13 @@ export interface FileRoutesByTo {
   '/services/tot': typeof ServicesTotRoute
   '/services/vat': typeof ServicesVatRoute
   '/services/withholding-tax': typeof ServicesWithholdingTaxRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/services': typeof ServicesRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/services/audit-assurance': typeof ServicesAuditAssuranceRoute
   '/services/business-consultancy': typeof ServicesBusinessConsultancyRoute
@@ -181,6 +180,7 @@ export interface FileRoutesById {
   '/services/tot': typeof ServicesTotRoute
   '/services/vat': typeof ServicesVatRoute
   '/services/withholding-tax': typeof ServicesWithholdingTaxRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -188,7 +188,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
-    | '/services'
     | '/sitemap.xml'
     | '/services/audit-assurance'
     | '/services/business-consultancy'
@@ -203,12 +202,12 @@ export interface FileRouteTypes {
     | '/services/tot'
     | '/services/vat'
     | '/services/withholding-tax'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/contact'
-    | '/services'
     | '/sitemap.xml'
     | '/services/audit-assurance'
     | '/services/business-consultancy'
@@ -223,12 +222,12 @@ export interface FileRouteTypes {
     | '/services/tot'
     | '/services/vat'
     | '/services/withholding-tax'
+    | '/services'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
-    | '/services'
     | '/sitemap.xml'
     | '/services/audit-assurance'
     | '/services/business-consultancy'
@@ -243,14 +242,28 @@ export interface FileRouteTypes {
     | '/services/tot'
     | '/services/vat'
     | '/services/withholding-tax'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
-  ServicesRoute: typeof ServicesRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ServicesAuditAssuranceRoute: typeof ServicesAuditAssuranceRoute
+  ServicesBusinessConsultancyRoute: typeof ServicesBusinessConsultancyRoute
+  ServicesCapitalGainsTaxRoute: typeof ServicesCapitalGainsTaxRoute
+  ServicesEtimsFilingRoute: typeof ServicesEtimsFilingRoute
+  ServicesExciseDutyRoute: typeof ServicesExciseDutyRoute
+  ServicesFixedAssetManagementRoute: typeof ServicesFixedAssetManagementRoute
+  ServicesIncomeTaxRoute: typeof ServicesIncomeTaxRoute
+  ServicesPayeRoute: typeof ServicesPayeRoute
+  ServicesRentalIncomeTaxRoute: typeof ServicesRentalIncomeTaxRoute
+  ServicesTaxRoute: typeof ServicesTaxRoute
+  ServicesTotRoute: typeof ServicesTotRoute
+  ServicesVatRoute: typeof ServicesVatRoute
+  ServicesWithholdingTaxRoute: typeof ServicesWithholdingTaxRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -260,13 +273,6 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -290,117 +296,112 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/withholding-tax': {
       id: '/services/withholding-tax'
-      path: '/withholding-tax'
+      path: '/services/withholding-tax'
       fullPath: '/services/withholding-tax'
       preLoaderRoute: typeof ServicesWithholdingTaxRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/vat': {
       id: '/services/vat'
-      path: '/vat'
+      path: '/services/vat'
       fullPath: '/services/vat'
       preLoaderRoute: typeof ServicesVatRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/tot': {
       id: '/services/tot'
-      path: '/tot'
+      path: '/services/tot'
       fullPath: '/services/tot'
       preLoaderRoute: typeof ServicesTotRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/tax': {
       id: '/services/tax'
-      path: '/tax'
+      path: '/services/tax'
       fullPath: '/services/tax'
       preLoaderRoute: typeof ServicesTaxRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/rental-income-tax': {
       id: '/services/rental-income-tax'
-      path: '/rental-income-tax'
+      path: '/services/rental-income-tax'
       fullPath: '/services/rental-income-tax'
       preLoaderRoute: typeof ServicesRentalIncomeTaxRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/paye': {
       id: '/services/paye'
-      path: '/paye'
+      path: '/services/paye'
       fullPath: '/services/paye'
       preLoaderRoute: typeof ServicesPayeRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/income-tax': {
       id: '/services/income-tax'
-      path: '/income-tax'
+      path: '/services/income-tax'
       fullPath: '/services/income-tax'
       preLoaderRoute: typeof ServicesIncomeTaxRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/fixed-asset-management': {
       id: '/services/fixed-asset-management'
-      path: '/fixed-asset-management'
+      path: '/services/fixed-asset-management'
       fullPath: '/services/fixed-asset-management'
       preLoaderRoute: typeof ServicesFixedAssetManagementRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/excise-duty': {
       id: '/services/excise-duty'
-      path: '/excise-duty'
+      path: '/services/excise-duty'
       fullPath: '/services/excise-duty'
       preLoaderRoute: typeof ServicesExciseDutyRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/etims-filing': {
       id: '/services/etims-filing'
-      path: '/etims-filing'
+      path: '/services/etims-filing'
       fullPath: '/services/etims-filing'
       preLoaderRoute: typeof ServicesEtimsFilingRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/capital-gains-tax': {
       id: '/services/capital-gains-tax'
-      path: '/capital-gains-tax'
+      path: '/services/capital-gains-tax'
       fullPath: '/services/capital-gains-tax'
       preLoaderRoute: typeof ServicesCapitalGainsTaxRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/business-consultancy': {
       id: '/services/business-consultancy'
-      path: '/business-consultancy'
+      path: '/services/business-consultancy'
       fullPath: '/services/business-consultancy'
       preLoaderRoute: typeof ServicesBusinessConsultancyRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
     '/services/audit-assurance': {
       id: '/services/audit-assurance'
-      path: '/audit-assurance'
+      path: '/services/audit-assurance'
       fullPath: '/services/audit-assurance'
       preLoaderRoute: typeof ServicesAuditAssuranceRouteImport
-      parentRoute: typeof ServicesRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface ServicesRouteChildren {
-  ServicesAuditAssuranceRoute: typeof ServicesAuditAssuranceRoute
-  ServicesBusinessConsultancyRoute: typeof ServicesBusinessConsultancyRoute
-  ServicesCapitalGainsTaxRoute: typeof ServicesCapitalGainsTaxRoute
-  ServicesEtimsFilingRoute: typeof ServicesEtimsFilingRoute
-  ServicesExciseDutyRoute: typeof ServicesExciseDutyRoute
-  ServicesFixedAssetManagementRoute: typeof ServicesFixedAssetManagementRoute
-  ServicesIncomeTaxRoute: typeof ServicesIncomeTaxRoute
-  ServicesPayeRoute: typeof ServicesPayeRoute
-  ServicesRentalIncomeTaxRoute: typeof ServicesRentalIncomeTaxRoute
-  ServicesTaxRoute: typeof ServicesTaxRoute
-  ServicesTotRoute: typeof ServicesTotRoute
-  ServicesVatRoute: typeof ServicesVatRoute
-  ServicesWithholdingTaxRoute: typeof ServicesWithholdingTaxRoute
-}
-
-const ServicesRouteChildren: ServicesRouteChildren = {
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   ServicesAuditAssuranceRoute: ServicesAuditAssuranceRoute,
   ServicesBusinessConsultancyRoute: ServicesBusinessConsultancyRoute,
   ServicesCapitalGainsTaxRoute: ServicesCapitalGainsTaxRoute,
@@ -414,18 +415,7 @@ const ServicesRouteChildren: ServicesRouteChildren = {
   ServicesTotRoute: ServicesTotRoute,
   ServicesVatRoute: ServicesVatRoute,
   ServicesWithholdingTaxRoute: ServicesWithholdingTaxRoute,
-}
-
-const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
-  ServicesRouteChildren,
-)
-
-const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
-  ContactRoute: ContactRoute,
-  ServicesRoute: ServicesRouteWithChildren,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
