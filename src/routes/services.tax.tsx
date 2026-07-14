@@ -46,7 +46,7 @@ function TaxHub() {
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <SiteHeader />
 
-      <section className="relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
+      <section className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, oklch(0.22 0.05 235) 0%, oklch(0.36 0.10 232) 60%, oklch(0.60 0.17 228) 100%)" }}>
         <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28 text-white">
           <p className="text-sm font-semibold uppercase tracking-widest text-white/70">Tax Services</p>
           <h1 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight md:text-5xl">
@@ -58,9 +58,9 @@ function TaxHub() {
           </p>
           <Link
             to="/contact"
-            className="mt-8 inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg transition-transform hover:scale-[1.02]"
+            className="group/link mt-8 inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg transition-transform hover:scale-[1.02]"
           >
-            Book a Consultation <ArrowRight className="h-4 w-4" />
+            Book a Consultation <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
           </Link>
         </div>
       </section>
@@ -79,16 +79,16 @@ function TaxHub() {
             <Link
               key={to}
               to={to}
-              className="group flex flex-col rounded-xl border border-border bg-card p-7 transition-colors hover:border-primary"
+              className="group flex flex-col rounded-xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary"
               style={{ boxShadow: "var(--shadow-soft)" }}
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-sky-500/10 text-sky-600">
                 <Icon className="h-5 w-5" />
               </div>
               <h3 className="mt-5 text-lg font-semibold">{title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{summary}</p>
               <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:underline">
-                Learn more <ArrowRight className="h-4 w-4" />
+                Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
           ))}
@@ -108,7 +108,7 @@ function TaxHub() {
               { t: "Audit exposure", d: "Inconsistent filings across iTax, eTIMS and books are the fastest way to attract a KRA review." },
               { t: "Focus drain", d: "Every hour spent wrestling with iTax is an hour not spent running your business." },
             ].map((x) => (
-              <div key={x.t} className="rounded-xl border border-border bg-background p-6" style={{ boxShadow: "var(--shadow-soft)" }}>
+              <div key={x.t} className="rounded-xl border border-border bg-background p-6 transition-all hover:-translate-y-1 hover:border-primary/30" style={{ boxShadow: "var(--shadow-soft)" }}>
                 <h3 className="text-lg font-semibold">{x.t}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{x.d}</p>
               </div>
@@ -129,7 +129,7 @@ function TaxHub() {
             { t: "Sector experience", d: "NGOs, SACCOs, schools, hospitality, real estate, manufacturing and professional services — each with its own quirks." },
             { t: "Fixed monthly fee", d: "One transparent retainer, no hourly billing surprises." },
           ].map((x) => (
-            <div key={x.t} className="rounded-xl border border-border bg-card p-6" style={{ boxShadow: "var(--shadow-soft)" }}>
+            <div key={x.t} className="rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/30" style={{ boxShadow: "var(--shadow-soft)" }}>
               <h3 className="text-lg font-semibold">{x.t}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{x.d}</p>
             </div>
@@ -143,8 +143,8 @@ function TaxHub() {
             <h2 className="text-2xl font-bold md:text-3xl">Not sure which tax applies?</h2>
             <p className="mt-2 text-secondary-foreground/70">Book a free 20-minute review — we map your PIN and tell you exactly what to file.</p>
           </div>
-          <Link to="/contact" className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90">
-            Talk to a consultant <ArrowRight className="h-4 w-4" />
+          <Link to="/contact" className="group/link inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02] hover:bg-primary/90">
+            Talk to a consultant <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
           </Link>
         </div>
       </section>

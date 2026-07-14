@@ -16,6 +16,12 @@ export const Route = createFileRoute("/services/excise-duty")({
       eyebrow="Tax · Excise Duty"
       title="Excise duty compliance for regulated sectors"
       intro="Whether you manufacture beverages, deal in imported plastics, offer digital services or run a betting platform, we handle excise licensing, filing and stamp management end-to-end."
+      theme={{
+        heroGradient: "linear-gradient(135deg, oklch(0.22 0.05 235) 0%, oklch(0.36 0.10 232) 60%, oklch(0.60 0.17 228) 100%)",
+        iconBg: "bg-sky-500/10 text-sky-600",
+        numberBg: "bg-sky-600 text-white",
+        checkColor: "text-sky-600",
+      }}
       overview={{
         heading: "What excise duty covers",
         paragraphs: [

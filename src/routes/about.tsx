@@ -40,7 +40,7 @@ function About() {
           { icon: HeartHandshake, title: "Our Approach", body: "We work as an extension of your finance team — responsive, discreet and always on your side." },
           { icon: Award, title: "Our Promise", body: "Accurate work, delivered on time, with advice you can actually use." },
         ].map(({ icon: Icon, title, body }) => (
-          <div key={title} className="rounded-xl border border-border bg-card p-8" style={{ boxShadow: "var(--shadow-soft)" }}>
+          <div key={title} className="rounded-xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary/40" style={{ boxShadow: "var(--shadow-soft)" }}>
             <Icon className="h-8 w-8 text-primary" />
             <h3 className="mt-4 text-xl font-semibold">{title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{body}</p>
@@ -66,8 +66,8 @@ function About() {
 
       <section className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-6 py-16 md:flex-row md:items-center">
         <h2 className="text-2xl font-bold md:text-3xl">Let's build something smarter together.</h2>
-        <Link to="/contact" className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90">
-          Get in touch <ArrowRight className="h-4 w-4" />
+        <Link to="/contact" className="group/link inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02] hover:bg-primary/90">
+          Get in touch <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
         </Link>
       </section>
       <SiteFooter />

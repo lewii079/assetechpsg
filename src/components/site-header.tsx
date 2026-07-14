@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState, useEffect, useRef, memo } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
-import logo from "@/assets/assetech-logo.png.asset.json";
+import logo from "@/assets/assetech-logo.png";
 
 const coreServices = [
   { to: "/services/etims-filing", label: "eTIMS & iTax" },
@@ -37,7 +37,7 @@ function SiteHeaderComponent() {
       <header className="sticky top-0 z-40 w-full border-b border-border bg-background/85 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo.url} alt="Assetech" className="h-9 w-auto" />
+            <img src={logo} alt="Assetech" className="h-9 w-auto" />
             <span className="text-lg font-semibold tracking-tight text-foreground">
               Assetech
             </span>
@@ -45,8 +45,8 @@ function SiteHeaderComponent() {
           <nav className="hidden items-center gap-8 md:flex">
             <Link
               to="/"
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-              activeProps={{ className: "text-primary" }}
+              className="relative text-sm font-medium text-muted-foreground transition-colors hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+              activeProps={{ className: "text-primary after:w-full" }}
               activeOptions={{ exact: true }}
             >
               Home
@@ -61,11 +61,11 @@ function SiteHeaderComponent() {
               <button
                 type="button"
                 onClick={() => setServicesOpen((v) => !v)}
-                className="flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                className={`relative flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 ${servicesOpen ? "after:w-full" : "after:w-0 hover:after:w-full"}`}
                 aria-haspopup="true"
                 aria-expanded={servicesOpen}
               >
-                Services <ChevronDown className="h-3.5 w-3.5" />
+                Services <ChevronDown className={`h-3.5 w-3.5 transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
               </button>
               {servicesOpen && (
                 <div className="absolute left-1/2 top-full z-50 w-[280px] -translate-x-1/2 pt-2">
@@ -92,22 +92,22 @@ function SiteHeaderComponent() {
 
             <Link
               to="/about"
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-              activeProps={{ className: "text-primary" }}
+              className="relative text-sm font-medium text-muted-foreground transition-colors hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+              activeProps={{ className: "text-primary after:w-full" }}
             >
               About
             </Link>
             <Link
               to="/contact"
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-              activeProps={{ className: "text-primary" }}
+              className="relative text-sm font-medium text-muted-foreground transition-colors hover:text-primary after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+              activeProps={{ className: "text-primary after:w-full" }}
             >
               Contact
             </Link>
 
             <Link
               to="/contact"
-              className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
+              className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm transition-all hover:scale-[1.03] hover:bg-primary/90"
             >
               Get a Quote
             </Link>

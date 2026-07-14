@@ -16,6 +16,12 @@ export const Route = createFileRoute("/services/paye")({
       eyebrow="Tax · Payroll & Statutory"
       title="Payroll compliance without the monthly stress"
       intro="PAYE, NSSF, SHIF, Affordable Housing Levy and NITA — computed, deducted, remitted and reported so your team is paid correctly and KRA never has to chase."
+      theme={{
+        heroGradient: "linear-gradient(135deg, oklch(0.22 0.05 235) 0%, oklch(0.36 0.10 232) 60%, oklch(0.60 0.17 228) 100%)",
+        iconBg: "bg-sky-500/10 text-sky-600",
+        numberBg: "bg-sky-600 text-white",
+        checkColor: "text-sky-600",
+      }}
       overview={{
         heading: "The Kenyan payroll stack, explained",
         paragraphs: [

@@ -2,6 +2,7 @@ import { z } from "zod";
 
 export const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
+  company: z.string().optional(),
   phone: z.string().regex(/^\+?[0-9]{9,}$/, "Please provide a valid phone number"),
   email: z.string().email("Please provide a valid email address"),
   message: z.string().min(10, "Message must be at least 10 characters"),
@@ -19,6 +20,7 @@ function buildMessageText(data: ContactFormData): string {
   return (
     `New enquiry from Assetech website\n\n` +
     `Name: ${data.name}\n` +
+    (data.company ? `Company: ${data.company}\n` : ``) +
     `Phone: ${data.phone}\n` +
     `Email: ${data.email}\n\n` +
     `Message:\n${data.message}`
@@ -50,6 +52,7 @@ export async function submitContactForm(
         subject: `New enquiry from ${validData.name} — Assetech website`,
         from_name: "Assetech Website",
         name: validData.name,
+        company: validData.company || "—",
         email: validData.email,
         phone: validData.phone,
         message: validData.message,

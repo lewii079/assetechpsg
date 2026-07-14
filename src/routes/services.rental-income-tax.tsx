@@ -16,6 +16,12 @@ export const Route = createFileRoute("/services/rental-income-tax")({
       eyebrow="Tax · Rental Income"
       title="Landlord tax, done every month without stress"
       intro="Whether you own a single flat or a portfolio of properties, we run your Monthly Rental Income compliance and step you up to full income tax cleanly when your rent roll grows."
+      theme={{
+        heroGradient: "linear-gradient(135deg, oklch(0.22 0.05 235) 0%, oklch(0.36 0.10 232) 60%, oklch(0.60 0.17 228) 100%)",
+        iconBg: "bg-sky-500/10 text-sky-600",
+        numberBg: "bg-sky-600 text-white",
+        checkColor: "text-sky-600",
+      }}
       overview={{
         heading: "MRI in plain language",
         paragraphs: [

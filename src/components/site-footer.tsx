@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, MapPin, Mail } from "lucide-react";
-import logo from "@/assets/assetech-logo.png.asset.json";
+import logo from "@/assets/assetech-logo.png";
 
 export function SiteFooter() {
   return (
@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2">
-            <img src={logo.url} alt="Assetech" className="h-10 w-auto brightness-0 invert" />
+            <img src={logo} alt="Assetech" className="h-10 w-auto brightness-0 invert" />
             <span className="text-xl font-semibold">Assetech</span>
           </div>
           <p className="mt-4 max-w-sm text-sm text-secondary-foreground/70">

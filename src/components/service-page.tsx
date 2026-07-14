@@ -1,12 +1,20 @@
 import { Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { ArrowRight, CheckCircle2, type LucideIcon } from "lucide-react";
+import { ArrowRight, CheckCircle2, ChevronDown, type LucideIcon } from "lucide-react";
+
+export type ServiceTheme = {
+  heroGradient: string;
+  iconBg: string;
+  numberBg: string;
+  checkColor: string;
+};
 
 export type ServicePageProps = {
   eyebrow: string;
   title: string;
   intro: string;
+  theme?: ServiceTheme;
   overview?: { heading: string; paragraphs: string[] };
   whyImportant?: { title: string; desc: string }[];
   whyAssetech?: { title: string; desc: string }[];
@@ -18,21 +26,29 @@ export type ServicePageProps = {
   faqs: { q: string; a: string }[];
 };
 
+const defaultTheme: ServiceTheme = {
+  heroGradient: "var(--gradient-hero)",
+  iconBg: "bg-primary/10 text-primary",
+  numberBg: "bg-primary text-primary-foreground",
+  checkColor: "text-primary",
+};
+
 export function ServicePage(p: ServicePageProps) {
+  const theme = p.theme ?? defaultTheme;
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <SiteHeader />
 
-      <section className="relative overflow-hidden" style={{ background: "var(--gradient-hero)" }}>
+      <section className="relative overflow-hidden" style={{ background: theme.heroGradient }}>
         <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28 text-white">
           <p className="text-sm font-semibold uppercase tracking-widest text-white/70">{p.eyebrow}</p>
           <h1 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight md:text-5xl">{p.title}</h1>
           <p className="mt-5 max-w-2xl text-lg text-white/80">{p.intro}</p>
           <Link
             to="/contact"
-            className="mt-8 inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg transition-transform hover:scale-[1.02]"
+            className="group/link mt-8 inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-lg transition-transform hover:scale-[1.02]"
           >
-            Book a Consultation <ArrowRight className="h-4 w-4" />
+            Book a Consultation <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
           </Link>
         </div>
       </section>
@@ -96,10 +112,10 @@ export function ServicePage(p: ServicePageProps) {
           {p.includes.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="rounded-xl border border-border bg-card p-6"
+              className="rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/30"
               style={{ boxShadow: "var(--shadow-soft)" }}
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <div className={`flex h-11 w-11 items-center justify-center rounded-lg ${theme.iconBg}`}>
                 <Icon className="h-5 w-5" />
               </div>
               <h3 className="mt-4 text-lg font-semibold">{title}</h3>
@@ -118,7 +134,7 @@ export function ServicePage(p: ServicePageProps) {
               {p.subServices.map((s) => (
                 <div
                   key={s.title}
-                  className="rounded-xl border border-border bg-background p-7"
+                  className="rounded-xl border border-border bg-background p-7 transition-all hover:-translate-y-1 hover:border-primary/30"
                   style={{ boxShadow: "var(--shadow-soft)" }}
                 >
                   <h3 className="text-xl font-semibold">{s.title}</h3>
@@ -126,7 +142,7 @@ export function ServicePage(p: ServicePageProps) {
                   <ul className="mt-4 space-y-2">
                     {s.bullets.map((b) => (
                       <li key={b} className="flex items-start gap-2 text-sm text-foreground">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                        <CheckCircle2 className={`mt-0.5 h-4 w-4 shrink-0 ${theme.checkColor}`} />
                         <span>{b}</span>
                       </li>
                     ))}
@@ -144,8 +160,8 @@ export function ServicePage(p: ServicePageProps) {
           <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">How we work with you</h2>
           <ol className="mt-10 grid gap-6 md:grid-cols-4">
             {p.process.map((step, i) => (
-              <li key={step.title} className="relative rounded-xl border border-border bg-background p-6">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+              <li key={step.title} className="relative rounded-xl border border-border bg-background p-6 transition-all hover:-translate-y-1 hover:border-primary/30">
+                <div className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold ${theme.numberBg}`}>
                   {i + 1}
                 </div>
                 <h3 className="mt-4 text-base font-semibold">{step.title}</h3>
@@ -182,7 +198,7 @@ export function ServicePage(p: ServicePageProps) {
           <ul className="mt-6 space-y-3">
             {p.audience.map((a) => (
               <li key={a} className="flex items-start gap-3 text-sm text-foreground">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 text-primary" />
+                <CheckCircle2 className={`mt-0.5 h-5 w-5 ${theme.checkColor}`} />
                 {a}
               </li>
             ))}
@@ -193,9 +209,10 @@ export function ServicePage(p: ServicePageProps) {
           <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">Common questions</h2>
           <div className="mt-6 space-y-4">
             {p.faqs.map((f) => (
-              <details key={f.q} className="group rounded-lg border border-border bg-card p-5" style={{ boxShadow: "var(--shadow-soft)" }}>
-                <summary className="cursor-pointer list-none text-sm font-semibold text-foreground marker:hidden">
+              <details key={f.q} className="group rounded-lg border border-border bg-card p-5 transition-colors open:border-primary/30" style={{ boxShadow: "var(--shadow-soft)" }}>
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-foreground marker:hidden">
                   {f.q}
+                  <ChevronDown className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" />
                 </summary>
                 <p className="mt-3 text-sm text-muted-foreground">{f.a}</p>
               </details>
@@ -210,8 +227,8 @@ export function ServicePage(p: ServicePageProps) {
             <h2 className="text-2xl font-bold md:text-3xl">Ready to get started?</h2>
             <p className="mt-2 text-secondary-foreground/70">Our Nakuru team responds within 24 hours.</p>
           </div>
-          <Link to="/contact" className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/90">
-            Talk to a consultant <ArrowRight className="h-4 w-4" />
+          <Link to="/contact" className="group/link inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02] hover:bg-primary/90">
+            Talk to a consultant <ArrowRight className="h-4 w-4 transition-transform group-hover/link:translate-x-1" />
           </Link>
         </div>
       </section>

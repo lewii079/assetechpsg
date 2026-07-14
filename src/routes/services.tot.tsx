@@ -16,6 +16,12 @@ export const Route = createFileRoute("/services/tot")({
       eyebrow="Tax · TOT"
       title="Turnover Tax without the monthly worry"
       intro="For small businesses between KES 1 million and KES 25 million turnover, TOT is the simplest tax regime — but only if it is filed on time, every month. We take that off your plate."
+      theme={{
+        heroGradient: "linear-gradient(135deg, oklch(0.22 0.05 235) 0%, oklch(0.36 0.10 232) 60%, oklch(0.60 0.17 228) 100%)",
+        iconBg: "bg-sky-500/10 text-sky-600",
+        numberBg: "bg-sky-600 text-white",
+        checkColor: "text-sky-600",
+      }}
       overview={{
         heading: "What TOT is and who qualifies",
         paragraphs: [

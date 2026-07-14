@@ -16,6 +16,12 @@ export const Route = createFileRoute("/services/fixed-asset-management")({
       eyebrow="Fixed Asset Management"
       title="Tag, verify and control every asset you own"
       intro="We build and maintain a reliable fixed asset register — from barcode tagging and physical verification to depreciation schedules that reconcile line-for-line with your audited accounts."
+      theme={{
+        heroGradient: "linear-gradient(135deg, oklch(0.25 0.05 60) 0%, oklch(0.40 0.10 55) 60%, oklch(0.62 0.15 50) 100%)",
+        iconBg: "bg-amber-500/10 text-amber-600",
+        numberBg: "bg-amber-600 text-white",
+        checkColor: "text-amber-600",
+      }}
       overview={{
         heading: "Why the fixed asset register is the ledger auditors care about most",
         paragraphs: [

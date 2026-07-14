@@ -93,7 +93,7 @@ function Contact() {
         <form onSubmit={handleSubmit(onSubmit)} className="rounded-xl border border-border bg-card p-8 md:col-span-3" style={{ boxShadow: "var(--shadow-soft)" }}>
           <h2 className="text-xl font-semibold">Send a message</h2>
           <p className="mt-1 text-sm text-muted-foreground">Tell us a bit about what you need.</p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <label className="text-sm">
               <span className="mb-1 block font-medium">Name</span>
               <input
@@ -102,6 +102,15 @@ function Contact() {
                 className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
               {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>}
+            </label>
+            <label className="text-sm">
+              <span className="mb-1 block font-medium">Company name</span>
+              <input
+                {...register("company")}
+                placeholder="Your company (optional)"
+                className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+              />
+              {errors.company && <p className="mt-1 text-xs text-red-500">{errors.company.message}</p>}
             </label>
             <label className="text-sm">
               <span className="mb-1 block font-medium">Phone</span>

@@ -16,6 +16,12 @@ export const Route = createFileRoute("/services/etims-filing")({
       eyebrow="eTIMS & iTax"
       title="eTIMS onboarding, iTax filing and KRA compliance"
       intro="We register your business on eTIMS, configure compliant invoicing and take over your iTax filings so every invoice is transmitted to KRA on time and every return is filed correctly."
+      theme={{
+        heroGradient: "linear-gradient(135deg, oklch(0.22 0.05 165) 0%, oklch(0.35 0.09 160) 60%, oklch(0.58 0.15 155) 100%)",
+        iconBg: "bg-emerald-500/10 text-emerald-600",
+        numberBg: "bg-emerald-600 text-white",
+        checkColor: "text-emerald-600",
+      }}
       overview={{
         heading: "What eTIMS and iTax actually mean for your business",
         paragraphs: [

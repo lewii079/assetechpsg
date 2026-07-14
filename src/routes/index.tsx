@@ -113,8 +113,8 @@ function Index() {
               <h3 className="mt-5 text-lg font-semibold text-foreground">{title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
               {to && (
-                <Link to={to} className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
-                  Learn more <ArrowRight className="h-3.5 w-3.5" />
+                <Link to={to} className="group/link mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline">
+                  Learn more <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/link:translate-x-1" />
                 </Link>
               )}
             </div>

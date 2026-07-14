@@ -16,6 +16,12 @@ export const Route = createFileRoute("/services/vat")({
       eyebrow="Tax · VAT"
       title="Value Added Tax, filed right every month"
       intro="From the KES 5 million registration threshold to refund claims and audit defence, we own your VAT cycle end-to-end on iTax and eTIMS."
+      theme={{
+        heroGradient: "linear-gradient(135deg, oklch(0.22 0.05 235) 0%, oklch(0.36 0.10 232) 60%, oklch(0.60 0.17 228) 100%)",
+        iconBg: "bg-sky-500/10 text-sky-600",
+        numberBg: "bg-sky-600 text-white",
+        checkColor: "text-sky-600",
+      }}
       overview={{
         heading: "How VAT works in Kenya",
         paragraphs: [

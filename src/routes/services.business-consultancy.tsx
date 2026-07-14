@@ -16,6 +16,12 @@ export const Route = createFileRoute("/services/business-consultancy")({
       eyebrow="Business Consultancy"
       title="Your outsourced finance function"
       intro="We give SMEs, NGOs and growing businesses the finance department they need — bookkeeping, monthly management accounts, budgets, systems, SOPs and training — without the payroll cost of building it in-house."
+      theme={{
+        heroGradient: "linear-gradient(135deg, oklch(0.24 0.05 15) 0%, oklch(0.38 0.10 10) 60%, oklch(0.58 0.16 5) 100%)",
+        iconBg: "bg-rose-500/10 text-rose-600",
+        numberBg: "bg-rose-600 text-white",
+        checkColor: "text-rose-600",
+      }}
       overview={{
         heading: "What business consultancy really means at Assetech",
         paragraphs: [

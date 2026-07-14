@@ -16,6 +16,12 @@ export const Route = createFileRoute("/services/audit-assurance")({
       eyebrow="Audit & Assurance"
       title="Audit-ready books and defensible controls"
       intro="We prepare your organisation for external audit, build internal audit capacity and stress-test your controls — so audit season stops being a fire drill and starts being a routine sign-off."
+      theme={{
+        heroGradient: "linear-gradient(135deg, oklch(0.22 0.05 300) 0%, oklch(0.35 0.10 295) 60%, oklch(0.56 0.16 290) 100%)",
+        iconBg: "bg-violet-500/10 text-violet-600",
+        numberBg: "bg-violet-600 text-white",
+        checkColor: "text-violet-600",
+      }}
       overview={{
         heading: "What audit and assurance actually deliver",
         paragraphs: [

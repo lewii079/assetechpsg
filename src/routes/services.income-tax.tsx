@@ -16,6 +16,12 @@ export const Route = createFileRoute("/services/income-tax")({
       eyebrow="Tax · Income Tax"
       title="Income tax done properly, not just filed"
       intro="Annual returns, quarterly installment tax, capital allowances and legitimate planning — for individuals, sole proprietors, partnerships and limited companies."
+      theme={{
+        heroGradient: "linear-gradient(135deg, oklch(0.22 0.05 235) 0%, oklch(0.36 0.10 232) 60%, oklch(0.60 0.17 228) 100%)",
+        iconBg: "bg-sky-500/10 text-sky-600",
+        numberBg: "bg-sky-600 text-white",
+        checkColor: "text-sky-600",
+      }}
       overview={{
         heading: "Kenyan income tax at a glance",
         paragraphs: [

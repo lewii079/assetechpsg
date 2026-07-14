@@ -16,6 +16,12 @@ export const Route = createFileRoute("/services/withholding-tax")({
       eyebrow="Tax · WHT"
       title="Withholding tax, deducted and remitted correctly"
       intro="Every professional fee, consultancy payment, rent, interest, dividend and management fee has a WHT rule attached. We apply the right rate, remit on iTax and issue certificates automatically."
+      theme={{
+        heroGradient: "linear-gradient(135deg, oklch(0.22 0.05 235) 0%, oklch(0.36 0.10 232) 60%, oklch(0.60 0.17 228) 100%)",
+        iconBg: "bg-sky-500/10 text-sky-600",
+        numberBg: "bg-sky-600 text-white",
+        checkColor: "text-sky-600",
+      }}
       overview={{
         heading: "How withholding tax works",
         paragraphs: [

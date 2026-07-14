@@ -16,6 +16,12 @@ export const Route = createFileRoute("/services/capital-gains-tax")({
       eyebrow="Tax · CGT"
       title="Capital Gains Tax, cleared before conveyancing"
       intro="15% CGT on the transfer of land, buildings and unquoted shares — computed properly, filed on iTax, and cleared in time for your lawyer to complete the transfer."
+      theme={{
+        heroGradient: "linear-gradient(135deg, oklch(0.22 0.05 235) 0%, oklch(0.36 0.10 232) 60%, oklch(0.60 0.17 228) 100%)",
+        iconBg: "bg-sky-500/10 text-sky-600",
+        numberBg: "bg-sky-600 text-white",
+        checkColor: "text-sky-600",
+      }}
       overview={{
         heading: "How CGT works in Kenya",
         paragraphs: [
